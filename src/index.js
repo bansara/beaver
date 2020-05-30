@@ -42,6 +42,10 @@ class App extends Component {
       })
   }
 
+  //
+  // using arrow function here binds 'this'
+  // no need to bind in constructor or inline
+  //
   update = async (value, id) => {
     const { following } = this.state;
     const amFollowing = following.filter(follow => follow.companyId === id).length ? true : false;
@@ -85,8 +89,10 @@ class App extends Component {
     const { user, companies, following } = this.state;
     const { update } = this;
     return (
-      <>
-        <h1>
+      <div style={{
+        fontFamily: 'Arial, Helvetica, sans-serif'
+      }}>
+        <h1 >
           {user.firstName} {user.lastName} is following {following.length} companies.
         </h1>
         <Companies
@@ -94,7 +100,7 @@ class App extends Component {
           following={following}
           update={update}
         />
-      </>
+      </div>
     );
   }
 }
