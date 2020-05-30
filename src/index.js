@@ -42,7 +42,7 @@ class App extends Component {
       })
   }
 
-  async update(value, id) {
+  update = async (value, id) => {
     const { following } = this.state;
     const amFollowing = following.filter(follow => follow.companyId === id).length ? true : false;
 
@@ -87,12 +87,12 @@ class App extends Component {
     return (
       <>
         <h1>
-          {user.firstName} {user.lastName}
+          {user.firstName} {user.lastName} is following {following.length} companies.
         </h1>
         <Companies
           companies={companies}
           following={following}
-          update={update.bind(this)}
+          update={update}
         />
       </>
     );

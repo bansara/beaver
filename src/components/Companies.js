@@ -13,23 +13,30 @@ const Companies = (props) => {
     }
 
     return (
-        <ul>
+        <ul style={{
+            listStyle: 'none',
+            padding: 0
+        }}>
             {
                 companies.map(company => {
 
                     return (
-                        <div key={company.id}>
-                            <li
-                                style={{
-                                    backgroundColor: followingIds.includes(company.id) ? 'tomato' : 'mistyrose',
-                                    padding: '1em'
-                                }}>
+                        <div key={company.id}
+                            style={{
+                                backgroundColor: followingIds.includes(company.id) ? 'tomato' : 'mistyrose',
+                                padding: '1em',
+                                margin: '0.5em 0'
+                            }}>
+                            <li style={{
+                                margin: '.5em 0'
+                            }}>
                                 {company.name}
                             </li>
                             <select
                                 name={'rating'}
                                 value={rating(company)}
                                 onChange={(e) => update(e.target.value, company.id)}
+                                style={{ width: '200px' }}
                             >
 
                                 <option value={5}>5</option>
@@ -37,7 +44,7 @@ const Companies = (props) => {
                                 <option value={3}>3</option>
                                 <option value={2}>2</option>
                                 <option value={1}>1</option>
-                                <option value={0}>0</option>
+                                <option value={0}>{`${followingIds.includes(company.id) ? 'Unfollow' : 'Rate and Follow'}`}</option>
                             </select>
                         </div>
                     )
