@@ -15,7 +15,13 @@ class App extends Component {
     const randomUser = await fetch(`${API}/users/random`);
     const user = await randomUser.json();
     const storage = window.localStorage;
-    const userId = storage.userId ? storage.getItem('userId') : storage.setItem('userId', user.id);
+    let userId;
+    if (storage.userId) {
+      userId = storage.getItem('userId')
+    } else {
+      userId = await user.id;
+      storage.setItem('userId', userId)
+    }
     if (userId) {
       try {
         fetch(`${API}/users/detail/${userId}`)
